@@ -28,13 +28,14 @@ public class SanphamController {
 		repo.save(sp);
 		return sp;
 	}
-	@DeleteMapping("/sanpham")
-    public Sanpham deleteSanpham(@Validated @RequestBody Sanpham sp) {
-		repo.delete(sp);
+	@DeleteMapping("/sanpham/{id}")
+    public Sanpham deleteSanpham(@Validated @RequestBody Sanpham sp, String id) {
+		repo.deleteById(id);
 		return sp;	
 	}
-	@PutMapping("/sanpham")
-	public Sanpham EditSanpham(@Validated @RequestBody Sanpham sp) {
+	@PutMapping("/sanpham/{id}")
+	public Sanpham EditSanpham(@Validated @RequestBody Sanpham sp, String id) {
+		repo.save(sp);
 		return sp;
 		
 	}
