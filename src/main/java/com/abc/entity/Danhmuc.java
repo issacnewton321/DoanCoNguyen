@@ -17,7 +17,7 @@ public class Danhmuc {
 	
 	@OneToMany(mappedBy = "danhmuc")
 	@JsonManagedReference
-	List<Sanpham> ListSanPham;
+	List<Sanpham> listSanPham;
 	public String getMadm() {
 		return madm;
 	}
@@ -31,10 +31,10 @@ public class Danhmuc {
 		this.tendm = tendm;
 	}
 	public List<Sanpham> getListSanPham() {
-		return ListSanPham;
+		return listSanPham;
 	}
 	public void setListSanPham(List<Sanpham> listSanPham) {
-		ListSanPham = listSanPham;
+		listSanPham = listSanPham;
 	}
 	
 }
