@@ -3,6 +3,8 @@ package com.abc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abc.entity.Danhmuc;
+import com.abc.entity.Khachhang;
 import com.abc.entity.Sanpham;
 import com.abc.repository.SanphamRepository;
 
@@ -20,8 +23,8 @@ public class SanphamController {
 	@Autowired
 	SanphamRepository repo;
 	@GetMapping("/sanpham")
-	public List<Sanpham> getSanpham() {
-		return repo.findAll();
+     public ResponseEntity<List<Sanpham>> all() {
+        return new ResponseEntity<>(repo.findAll(), HttpStatus.NOT_FOUND);
 	}
 	@PostMapping("/sanpham")
 	public Sanpham insertSanpham(@Validated @RequestBody Sanpham sp) {
