@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -16,7 +17,7 @@ public class Danhmuc {
 	String madm;
 	String tendm;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "danhmuc", fetch=FetchType.EAGER)
 	Collection<Sanpham> sanpham;
 	
