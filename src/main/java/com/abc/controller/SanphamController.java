@@ -19,6 +19,7 @@ public class SanphamController {
 	SanphamRepository repo;
 	@GetMapping("/sanpham")
 	public List<Sanpham> getSanpham() {
+	
 		return repo.findAll();
 	}
 	@PostMapping("/sanpham")

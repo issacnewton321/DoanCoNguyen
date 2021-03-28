@@ -6,12 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Danhmuc {
 	@Id
 	String madm;
 	String tendm;
+	
+	
 	@OneToMany(mappedBy = "danhmuc")
+	@JsonManagedReference
 	List<Sanpham> ListSanPham;
 	public String getMadm() {
 		return madm;

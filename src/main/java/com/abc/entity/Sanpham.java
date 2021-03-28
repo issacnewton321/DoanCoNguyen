@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Sanpham {
 	@Id
@@ -20,19 +23,24 @@ public class Sanpham {
 	String photo;
 	float khuyenmai;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "MADM")
 	Danhmuc danhmuc;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "sanpham")
 	List<CTDH> listCTDH;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy ="sanpham")
 	List<Danhgia> listDanhGia;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "sanpham")
 	List<Binhluan> listBinhLuan;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "sanpham")
 	List<Giohang> listGioHang;
 
