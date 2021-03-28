@@ -29,13 +29,19 @@ public class DanhmucController {
 		repo.save(dm);
 		return dm;
 	}
-	@DeleteMapping("/danhmuc")
-    public Danhmuc deleteDanhmuc(@Validated @RequestBody Danhmuc dm) {
-		repo.delete(dm);
+	@DeleteMapping("/danhmuc/{id}")
+    public Danhmuc deleteDanhmuc(@Validated Danhmuc dm, String id) {
+		repo.deleteById(id);
 		return dm;	
 	}
 	@PutMapping("/danhmuc")
-	public Danhmuc EditDanhmuc(@Validated @RequestBody Danhmuc dm) {
+	public Danhmuc editDanhmuc(@Validated @RequestBody Danhmuc dm) {
+		repo.save(dm);
+		return dm;	
+	}
+	@GetMapping("/danhmuc/{id}")
+	public Danhmuc getIdDanhmuc(@Validated Danhmuc dm, String id) {
+		repo.findById(id);
 		return dm;
 		
 	}
