@@ -24,7 +24,7 @@ public class SanphamController {
 	SanphamRepository repo;
 	@GetMapping("/sanpham")
      public ResponseEntity<List<Sanpham>> all() {
-        return new ResponseEntity<>(repo.findAll(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
 	}
 	@PostMapping("/sanpham")
 	public Sanpham insertSanpham(@Validated @RequestBody Sanpham sp) {

@@ -2,6 +2,7 @@ package com.abc.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,8 +15,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Sanpham {
 	@Id
+	@Column(name="masp")
 	String masp;
+	@Column(name="tensp")
 	String tensp;
+	
 	int soluong;
 	float dongia;
 	String mota_ngan;
@@ -23,7 +27,7 @@ public class Sanpham {
 	String photo;
 	float khuyenmai;
 	
-	@JsonBackReference
+
 	@ManyToOne
 	@JoinColumn(name = "MADM")
 	Danhmuc danhmuc;
@@ -147,6 +151,20 @@ public class Sanpham {
 	public void setListGioHang(List<Giohang> listGioHang) {
 		this.listGioHang = listGioHang;
 	}
-	
-	
+	public Sanpham(String masp, String tensp, int soluong, float dongia, String mota_ngan, String mota_chitiet,
+			String photo, float khuyenmai, Danhmuc danhmuc) {
+		super();
+		this.masp = masp;
+		this.tensp = tensp;
+		this.soluong = soluong;
+		this.dongia = dongia;
+		this.mota_ngan = mota_ngan;
+		this.mota_chitiet = mota_chitiet;
+		this.photo = photo;
+		this.khuyenmai = khuyenmai;
+		this.danhmuc = danhmuc;
+	}
+	public Sanpham() {
+		
+	}
 }

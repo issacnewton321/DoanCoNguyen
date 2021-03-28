@@ -1,8 +1,10 @@
 package com.abc.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -15,9 +17,10 @@ public class Danhmuc {
 	String tendm;
 	
 	
-	@OneToMany(mappedBy = "danhmuc")
-	@JsonManagedReference
-	List<Sanpham> listSanPham;
+	@OneToMany(mappedBy = "danhmuc", fetch=FetchType.EAGER)
+	Collection<Sanpham> sanpham;
+	
+//	List<Sanpham> listSanPham;
 	public String getMadm() {
 		return madm;
 	}
@@ -30,9 +33,9 @@ public class Danhmuc {
 	public void setTendm(String tendm) {
 		this.tendm = tendm;
 	}
-	public List<Sanpham> getListSanPham() {
-		return listSanPham;
-	}
+//	public List<Sanpham> getListSanPham() {
+//		return listSanPham;
+//	}
 	public void setListSanPham(List<Sanpham> listSanPham) {
 		listSanPham = listSanPham;
 	}
