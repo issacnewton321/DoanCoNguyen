@@ -1,6 +1,7 @@
 package com.abc.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,28 +25,46 @@ public class DanhmucController {
 	@Autowired
 	DanhmucRepository repo;
 	@GetMapping("/danhmuc")
-    public ResponseEntity<List<Danhmuc>> all() {
-        return new ResponseEntity<>(repo.findAll(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<List<Danhmuc>> all() {
+		return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
 	}
+
 	@PostMapping("/danhmuc")
-	public Danhmuc getListDM(@Validated @RequestBody Danhmuc dm){
+	public String postDanhmuc(@Validated @RequestBody Danhmuc dm) {
+		List<Danhmuc> danhmuc = repo.findAll();
+		for (Danhmuc d: danhmuc) {
+			if (d.getMadm().equalsIgnoreCase(d.getMadm())) {
+				return "false";
+			}
+		}
 		repo.save(dm);
-		return dm;
+		return "true";
 	}
-	@DeleteMapping("/danhmuc/{id}")
-    public Danhmuc deleteDanhmuc(@Validated Danhmuc dm, String id) {
-		repo.deleteById(id);
-		return dm;	
+
+	@DeleteMapping("/danhmuc/{madm}")
+	public String deleteIdKhachhang(@PathVariable String madm) {
+		try {
+			repo.deleteById(madm);
+		} catch (Exception e) {
+			e.getMessage();
+			return "false";
+		}
+		return "true";
 	}
+
 	@PutMapping("/danhmuc")
-	public Danhmuc editDanhmuc(@Validated @RequestBody Danhmuc dm) {
-		repo.save(dm);
-		return dm;	
+	public String putDanhmuc(@Validated @RequestBody Danhmuc dm) {
+		try {
+			repo.save(dm);
+		} catch (Exception ex) {
+			ex.getMessage();
+			return "false";
+		}
+		return "true";
 	}
-	@GetMapping("/danhmuc/{id}")
-	public Danhmuc getIdDanhmuc(@Validated Danhmuc dm, String id) {
-		repo.findById(id);
-		return dm;
-		
+
+	@GetMapping("/danhmuc/{madm}")
+	public Optional<Danhmuc> getIdDanhmuc(@PathVariable String madm) {
+		return repo.findById(madm);
 	}
 }
