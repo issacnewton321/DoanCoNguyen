@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Khachhang {
 	@Id
@@ -18,6 +20,7 @@ public class Khachhang {
 	int gioitinh;
 	Date ngaytaotk;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "khachhang")
 	Nguoidung nguoidung;
 

@@ -9,6 +9,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Nguoidung {
 	@Id
@@ -16,18 +18,24 @@ public class Nguoidung {
 	String password;
 	int quyen;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "nguoidung")
 	List<Danhgia> listDanhGia;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "nguoidung")
 	List<Binhluan> listBinhLuan;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "nguoidung")
 	List<Giohang> listGioHang;
-
+	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name ="mand", unique = true)
 	Nhanvien nhanvien;
+	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name ="makh", unique = true)
 	Khachhang khachhang;
