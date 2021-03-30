@@ -3,7 +3,6 @@ package com.abc.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,41 +15,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abc.entity.Khachhang;
-import com.abc.repository.KhachhangRepository;
+import com.abc.entity.Nhanvien;
+import com.abc.repository.NhanvienRepository;
 
 @RestController
-public class KhachhangController {
+public class NhanvienController {
 	@Autowired
-	KhachhangRepository repo;
+	NhanvienRepository repo;
 	
-	@GetMapping("/khachhang")
-    public ResponseEntity<List<Khachhang>> getKhachhang() {
+	@GetMapping("/nhanvien")
+    public ResponseEntity<List<Nhanvien>> getNhanvien() {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping("/khachhang/{mand}")
-	public Optional<Khachhang> getIdKhachhang(@PathVariable("mand") String mand) {
+	@GetMapping("/nhanvien/{mand}")
+	public Optional<Nhanvien> getIdNhanvien(@PathVariable("mand") String mand) {
 		return repo.findById(mand);
 	}
 	
-	@PostMapping("/khachhang")
-	public String postKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PostMapping("/nhanvien")
+	public String postNhanvien(@Validated @RequestBody Nhanvien nv) {
 		
-		List<Khachhang> listKh = repo.findAll();
-		for (Khachhang kh1 : listKh) {
-			if (kh1.getMand().equalsIgnoreCase(kh.getMand())) {
+		List<Nhanvien> listNv = repo.findAll();
+		for (Nhanvien nv1 : listNv) {
+			if (nv1.getMand().equalsIgnoreCase(nv.getMand())) {
 				return "false";
 			}
 		}
-		repo.save(kh);
+		repo.save(nv);
 		return "true";
 	}
 	
-	@PutMapping("/khachhang")
-	public String putKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PutMapping("/nhanvien")
+	public String putNhanvien(@Validated @RequestBody Nhanvien nv) {
 		try {
-			repo.save(kh);
+			repo.save(nv);
 		} catch (Exception ex) {
 			ex.getMessage();
 			return "false";
@@ -58,8 +57,8 @@ public class KhachhangController {
 		return "true";
 	}
 	
-	@DeleteMapping("/khachhang/{mand}")
-	public String deleteIdKhachhang(@PathVariable("mand") String mand) {
+	@DeleteMapping("/nhanvien/{mand}")
+	public String deleteIdNhanvien(@PathVariable("mand") String mand) {
 		try {
 			repo.deleteById(mand);
 		} catch (Exception e) {
@@ -69,5 +68,4 @@ public class KhachhangController {
 		}
 		return "true";
 	}
-	
 }

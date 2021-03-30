@@ -3,7 +3,6 @@ package com.abc.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,41 +15,42 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.abc.entity.Donhang;
 import com.abc.entity.Khachhang;
-import com.abc.repository.KhachhangRepository;
+import com.abc.repository.DonhangRepositoty;
 
 @RestController
-public class KhachhangController {
+public class DonhangController {
 	@Autowired
-	KhachhangRepository repo;
+	DonhangRepositoty repo;
 	
-	@GetMapping("/khachhang")
-    public ResponseEntity<List<Khachhang>> getKhachhang() {
+	@GetMapping("/donhang")
+    public ResponseEntity<List<Donhang>> getDonhang() {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping("/khachhang/{mand}")
-	public Optional<Khachhang> getIdKhachhang(@PathVariable("mand") String mand) {
-		return repo.findById(mand);
+	@GetMapping("/donhang/{madh}")
+	public Optional<Donhang> getIdDonhang(@PathVariable("madh") String madh) {
+		return repo.findById(madh);
 	}
 	
-	@PostMapping("/khachhang")
-	public String postKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PostMapping("/donhang")
+	public String postDonhang(@Validated @RequestBody Donhang dh) {
 		
-		List<Khachhang> listKh = repo.findAll();
-		for (Khachhang kh1 : listKh) {
-			if (kh1.getMand().equalsIgnoreCase(kh.getMand())) {
+		List<Donhang> listDh = repo.findAll();
+		for (Donhang dh1 : listDh) {
+			if (dh1.getMadh().equalsIgnoreCase(dh.getMadh())) {
 				return "false";
 			}
 		}
-		repo.save(kh);
+		repo.save(dh);
 		return "true";
 	}
 	
-	@PutMapping("/khachhang")
-	public String putKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PutMapping("/donhang")
+	public String putDonhang(@Validated @RequestBody Donhang dh) {
 		try {
-			repo.save(kh);
+			repo.save(dh);
 		} catch (Exception ex) {
 			ex.getMessage();
 			return "false";
@@ -58,10 +58,10 @@ public class KhachhangController {
 		return "true";
 	}
 	
-	@DeleteMapping("/khachhang/{mand}")
-	public String deleteIdKhachhang(@PathVariable("mand") String mand) {
+	@DeleteMapping("/donhang/{madh}")
+	public String deleteIdDonhang(@PathVariable("madh") String madh) {
 		try {
-			repo.deleteById(mand);
+			repo.deleteById(madh);
 		} catch (Exception e) {
 			e.getMessage();
 			return "false";
@@ -69,5 +69,4 @@ public class KhachhangController {
 		}
 		return "true";
 	}
-	
 }

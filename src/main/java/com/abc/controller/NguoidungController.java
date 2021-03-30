@@ -3,7 +3,6 @@ package com.abc.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,41 +15,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abc.entity.Khachhang;
-import com.abc.repository.KhachhangRepository;
+import com.abc.entity.Nguoidung;
+import com.abc.repository.NguoidungRepository;
 
 @RestController
-public class KhachhangController {
+public class NguoidungController {
 	@Autowired
-	KhachhangRepository repo;
+	NguoidungRepository repo;
 	
-	@GetMapping("/khachhang")
-    public ResponseEntity<List<Khachhang>> getKhachhang() {
+	@GetMapping("/nguoidung")
+    public ResponseEntity<List<Nguoidung>> getNguoidung() {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping("/khachhang/{mand}")
-	public Optional<Khachhang> getIdKhachhang(@PathVariable("mand") String mand) {
-		return repo.findById(mand);
+	@GetMapping("/nguoidung/{username}")
+	public Optional<Nguoidung> getUsernameNguoidung(@PathVariable("username") String username) {
+		return repo.findById(username);
 	}
 	
-	@PostMapping("/khachhang")
-	public String postKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PostMapping("/nguoidung")
+	public String postNguoidung(@Validated @RequestBody Nguoidung nd) {
 		
-		List<Khachhang> listKh = repo.findAll();
-		for (Khachhang kh1 : listKh) {
-			if (kh1.getMand().equalsIgnoreCase(kh.getMand())) {
+		List<Nguoidung> listNd = repo.findAll();
+		for (Nguoidung nd1 : listNd) {
+			if (nd1.getUsername().equalsIgnoreCase(nd.getUsername())) {
 				return "false";
 			}
 		}
-		repo.save(kh);
+		repo.save(nd);
 		return "true";
 	}
 	
-	@PutMapping("/khachhang")
-	public String putKhachhang(@Validated @RequestBody Khachhang kh) {
+	@PutMapping("/nguoidung")
+	public String putNguoidung(@Validated @RequestBody Nguoidung nd) {
 		try {
-			repo.save(kh);
+			repo.save(nd);
 		} catch (Exception ex) {
 			ex.getMessage();
 			return "false";
@@ -58,10 +57,10 @@ public class KhachhangController {
 		return "true";
 	}
 	
-	@DeleteMapping("/khachhang/{mand}")
-	public String deleteIdKhachhang(@PathVariable("mand") String mand) {
+	@DeleteMapping("/mguoidung/{username}")
+	public String deleteUsernameNguoidung(@PathVariable("username") String username) {
 		try {
-			repo.deleteById(mand);
+			repo.deleteById(username);
 		} catch (Exception e) {
 			e.getMessage();
 			return "false";
@@ -69,5 +68,4 @@ public class KhachhangController {
 		}
 		return "true";
 	}
-	
 }
