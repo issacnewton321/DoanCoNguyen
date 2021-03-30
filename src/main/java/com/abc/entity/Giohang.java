@@ -13,8 +13,8 @@ public class Giohang {
 	int soluong;
 	
 	@ManyToOne
-	@MapsId("makh")
-	@JoinColumn(name = "makh")
+	@MapsId("username")
+	@JoinColumn(name = "username")
 	Nguoidung nguoidung;
 	
 	@ManyToOne

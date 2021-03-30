@@ -2,16 +2,20 @@ package com.abc.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="nguoidung",uniqueConstraints = @UniqueConstraint(columnNames = {"manv","makh"}))
 public class Nguoidung {
 	@Id
 	String username;
@@ -32,12 +36,13 @@ public class Nguoidung {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name ="mand", unique = true)
+	
+	@JoinColumn(name ="manv", nullable = true)
 	Nhanvien nhanvien;
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name ="makh", unique = true)
+	@JoinColumn(name ="makh",nullable = true)
 	Khachhang khachhang;
 	
 	

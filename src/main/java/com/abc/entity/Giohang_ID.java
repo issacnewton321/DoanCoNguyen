@@ -6,13 +6,13 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Giohang_ID implements Serializable{
-	String makh;
+	String username;
 	String masp;
-	public String getMakh() {
-		return makh;
+	public String getUsername() {
+		return username;
 	}
-	public void setMakh(String makh) {
-		this.makh = makh;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getMasp() {
 		return masp;
@@ -20,5 +20,6 @@ public class Giohang_ID implements Serializable{
 	public void setMasp(String masp) {
 		this.masp = masp;
 	}
+	
 	
 }

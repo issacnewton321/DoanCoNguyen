@@ -38,7 +38,7 @@ public class NhanvienController {
 		
 		List<Nhanvien> listNv = repo.findAll();
 		for (Nhanvien nv1 : listNv) {
-			if (nv1.getMand().equalsIgnoreCase(nv.getMand())) {
+			if (nv1.getManv().equalsIgnoreCase(nv.getManv())) {
 				return "false";
 			}
 		}

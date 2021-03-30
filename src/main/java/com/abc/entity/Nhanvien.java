@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Nhanvien {
 	@Id 
-	String mand;
+	String manv;
 	String ho;
 	String ten;
 	String diachi;
@@ -23,12 +23,12 @@ public class Nhanvien {
 	@OneToOne(mappedBy = "nhanvien")
 	Nguoidung nguoidung;
 
-	public String getMand() {
-		return mand;
+	public String getManv() {
+		return manv;
 	}
 
-	public void setMand(String mand) {
-		this.mand = mand;
+	public void setManv(String manv) {
+		this.manv = manv;
 	}
 
 	public String getHo() {

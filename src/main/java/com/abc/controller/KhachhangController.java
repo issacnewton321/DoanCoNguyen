@@ -39,7 +39,7 @@ public class KhachhangController {
 		
 		List<Khachhang> listKh = repo.findAll();
 		for (Khachhang kh1 : listKh) {
-			if (kh1.getMand().equalsIgnoreCase(kh.getMand())) {
+			if (kh1.getMakh().equalsIgnoreCase(kh.getMakh())) {
 				return "false";
 			}
 		}

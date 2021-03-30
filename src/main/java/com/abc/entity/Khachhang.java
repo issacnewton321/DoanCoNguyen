@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Khachhang {
 	@Id
-	String mand;
+	String makh;
 	String ho;
 	String ten;
 	String diachi;
@@ -24,12 +24,14 @@ public class Khachhang {
 	@OneToOne(mappedBy = "khachhang")
 	Nguoidung nguoidung;
 
-	public String getMand() {
-		return mand;
+	
+
+	public String getMakh() {
+		return makh;
 	}
 
-	public void setMand(String mand) {
-		this.mand = mand;
+	public void setMakh(String makh) {
+		this.makh = makh;
 	}
 
 	public String getHo() {
