@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,6 +20,20 @@ public class Donhang {
 	
 	@OneToMany(mappedBy = "donhang")
 	List<CTDH> listCTDH;
+	
+	@ManyToOne
+	@JoinColumn(name = "username")
+	Nguoidung nguoidung;
+	
+	
+
+	public Nguoidung getNguoidung() {
+		return nguoidung;
+	}
+
+	public void setNguoidung(Nguoidung nguoidung) {
+		this.nguoidung = nguoidung;
+	}
 
 	public String getMadh() {
 		return madh;

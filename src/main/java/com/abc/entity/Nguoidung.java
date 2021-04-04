@@ -35,6 +35,10 @@ public class Nguoidung {
 	List<Giohang> listGioHang;
 	
 	@JsonIgnore
+	@OneToMany(mappedBy = "nguoidung")
+	List<Donhang> listDonHang;
+	
+	@JsonIgnore
 	@OneToOne
 	
 	@JoinColumn(name ="manv", nullable = true)
@@ -47,6 +51,15 @@ public class Nguoidung {
 	
 	
 	
+	
+	public List<Donhang> getListDonHang() {
+		return listDonHang;
+	}
+
+	public void setListDonHang(List<Donhang> listDonHang) {
+		this.listDonHang = listDonHang;
+	}
+
 	public Nhanvien getNhanvien() {
 		return nhanvien;
 	}
