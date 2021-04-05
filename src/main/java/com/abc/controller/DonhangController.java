@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abc.entity.Donhang;
-import com.abc.entity.Khachhang;
 import com.abc.repository.DonhangRepositoty;
 
 @RestController
