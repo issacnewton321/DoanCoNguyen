@@ -28,9 +28,14 @@ public class DonhangController {
         return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping("/donhang/{madh}")
+	@GetMapping("/donhang/{username}/{madh}")// ?username làm biến ảo (không trùng với các method get khác) có thể nhập sai trường username :)
 	public Optional<Donhang> getIdDonhang(@PathVariable("madh") String madh) {
 		return repo.findById(madh);
+	}
+	
+	@GetMapping("/donhang/{username}")
+	public List<Donhang> getDonhangByUsername(@PathVariable("username") String username){
+		return repo.getDonhangByUsername(username);
 	}
 	
 	@PostMapping("/donhang")
