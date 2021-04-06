@@ -15,10 +15,10 @@ public interface CTDHRepository extends JpaRepository<CTDH, CTDH_ID>{
 	@Query(nativeQuery = true, value = "select * from ctdh where madh =?1")
 	List<CTDH> getCTDHByMadh(String madh);
 
-	@Query(nativeQuery = true, value = "SELECT *\r\n"
-			+ "FROM ctdh ct\r\n"
-			+ "WHERE ct.madh=?1 and EXISTS (SELECT 1\r\n"
-			+ "              FROM donhang dh\r\n"
-			+ "              WHERE dh.username=?2 and dh.madh=ct.madh)")
-	List<CTDH> checkCTDHByUsername(String madh, String username);
+	@Query(nativeQuery = true, value = "select * from ctdh where madh =?1")
+	List<CTDH> postCTDHByMadh(String madh);
+	
+	@Query(nativeQuery = true, value = "delete from ctdh where madh=?1")
+	List<CTDH> deleteCTDHByDonhang(String madh);
+	
 }
