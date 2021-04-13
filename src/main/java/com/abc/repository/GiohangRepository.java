@@ -22,6 +22,7 @@ public interface GiohangRepository extends JpaRepository<Giohang, Giohang_ID>{
 	
 	@Transactional
 	@Modifying
+
 	@Query(nativeQuery = true, value = "delete from Giohang where username = ?1")
 	List<Giohang> deleteGiohangByUsername(String username);
 	

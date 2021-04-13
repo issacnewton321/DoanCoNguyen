@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Donhang {
 	@Id
@@ -18,6 +20,7 @@ public class Donhang {
 	int trangthai;
 	int hinhthucthanhtoan;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "donhang")
 	List<CTDH> listCTDH;
 	
