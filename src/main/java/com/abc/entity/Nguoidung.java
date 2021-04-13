@@ -12,10 +12,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="nguoidung",uniqueConstraints = @UniqueConstraint(columnNames = {"manv","makh"}))
+@Table(name="nguoidung")
+@CrossOrigin
 public class Nguoidung {
 	@Id
 	String username;
@@ -38,15 +41,12 @@ public class Nguoidung {
 	@OneToMany(mappedBy = "nguoidung")
 	List<Donhang> listDonHang;
 	
-	@JsonIgnore
 	@OneToOne
-	
-	@JoinColumn(name ="manv", nullable = true)
+	@JoinColumn(name ="manv")
 	Nhanvien nhanvien;
 	
-	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name ="makh",nullable = true)
+	@JoinColumn(name ="makh")
 	Khachhang khachhang;
 	
 	

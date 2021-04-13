@@ -3,11 +3,16 @@ package com.abc.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abc.entity.Khachhang;
 import com.abc.repository.KhachhangRepository;
+import com.abc.repository.NguoidungRepository;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class KhachhangController {
 	@Autowired
 	KhachhangRepository repo;
+	@Autowired
+	EntityManager entityManager;
 	
 	@GetMapping("/khachhang")
     public ResponseEntity<List<Khachhang>> getKhachhang() {
@@ -57,13 +66,13 @@ public class KhachhangController {
 		}
 		return "true";
 	}
-	
 	@DeleteMapping("/khachhang/{mand}")
 	public String deleteIdKhachhang(@PathVariable("mand") String mand) {
-		try {
-			repo.deleteById(mand);
+		try {	
+			repo.deleteByMakh(mand);
+			//repo.deleteById(mand);
 		} catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 			return "false";
 			// TODO: handle exception
 		}

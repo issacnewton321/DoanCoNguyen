@@ -8,6 +8,16 @@ import javax.persistence.Embeddable;
 public class Giohang_ID implements Serializable{
 	String username;
 	String masp;
+	
+	public Giohang_ID() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Giohang_ID(String username, String masp) {
+		super();
+		this.username = username;
+		this.masp = masp;
+	}
 	public String getUsername() {
 		return username;
 	}

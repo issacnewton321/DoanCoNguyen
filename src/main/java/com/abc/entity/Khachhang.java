@@ -2,6 +2,7 @@ package com.abc.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -21,7 +22,7 @@ public class Khachhang {
 	Date ngaytaotk;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "khachhang")
+	@OneToOne(mappedBy = "khachhang",cascade = CascadeType.ALL)
 	Nguoidung nguoidung;
 
 	
